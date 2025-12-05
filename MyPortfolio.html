@@ -1,204 +1,921 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom Styles -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, black, green);
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-        .hero {
-            text-align: center;
-            padding: 80px 20px;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #FFD700;
-        }
-        .hero p {
-            font-size: 1.2rem;
-        }
-        .section {
-            padding: 60px 20px;
-        }
-        .card {
-            transition: transform 0.3s ease-in-out;
-        }
-        .card:hover {
-            transform: scale(1.05);
-        }
-        footer {
-            background: #333;
-            padding: 20px 0;
-            text-align: center;
-            color: #fff;
-        }
-        footer a {
-            color: #FFD700;
-            text-decoration: none;
-        }
-        .experience-section {
-            padding: 60px 20px;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: #FFD700;
-        }
-        .experience-card {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: transform 0.3s ease-in-out;
-        }
-        .experience-card:hover {
-            transform: scale(1.03);
-        }
-        h3 {
-            color: #FFD700;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prathik Reddy Thogaru | Full Stack Developer</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- tsparticles CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+
+  <!-- Custom Styles -->
+  <style>
+    :root {
+      --bg-main: #050816;
+      --bg-elevated: #0b1120;
+      --accent: #15fa5a;
+      --accent-soft: rgba(250, 204, 21, 0.1);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.3);
     }
-        .typewriter p {
-        overflow: hidden; /* Ensures the content is not revealed until the animation */
-       /* border-right: .15em solid orange; /* The typwriter cursor */
-        white-space: nowrap; /* Keeps the content on a single line */
-       margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-      letter-spacing: .15em; /* Adjust as needed */
-     animation: 
-    typing 4.5s steps(40, end),
-    blink-caret .75s step-end 6;
-}
 
-/* The typing effect */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
+    * {
+      box-sizing: border-box;
+    }
 
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50%{ border-color: orange; }
-}
-typewriter p.cursor-removed {
-    border-right: none; /* Removes the cursor */
-}
-    </style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%);
+      color: var(--text-main);
+      margin: 0;
+      padding: 0;
+      padding-top: 72px; /* space for fixed navbar */
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* tsparticles background */
+    #tsparticles {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(15, 23, 42, 0.95) !important;
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .navbar-brand {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--accent) !important;
+    }
+
+    .nav-link {
+      color: var(--text-muted) !important;
+      font-size: 0.95rem;
+      margin-left: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-link:hover,
+    .nav-link:focus {
+      color: var(--accent) !important;
+    }
+
+    /* Layout helpers */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-heading {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 2.5rem;
+    }
+
+    /* Hero */
+    #home {
+      min-height: calc(80vh - 72px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-subtitle {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .hero-name {
+      font-size: clamp(2.4rem, 5vw, 3.2rem);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 540px;
+    }
+
+    .hero-cta {
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .btn-primary-custom {
+      background: var(--accent);
+      color: #111827;
+      border: none;
+      font-weight: 600;
+      padding: 0.65rem 1.5rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary-custom:hover {
+      background: #eab308;
+      color: #020617;
+    }
+
+    .btn-outline-custom {
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 0.65rem 1.5rem;
+      font-size: 0.95rem;
+      background: transparent;
+    }
+
+    .btn-outline-custom:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    /* About */
+    #about .card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    #about p {
+      color: var(--text-muted);
+      font-size: 0.96rem;
+    }
+
+    /* Resume */
+    #resume .card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .resume-frame {
+      width: 100%;
+      min-height: 600px;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      background: #000;
+    }
+
+    @media (max-width: 767px) {
+      .resume-frame {
+        min-height: 480px;
+      }
+    }
+
+    /* Skills */
+    #skills .skill-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.45rem 0.9rem;
+      margin: 0.25rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid rgba(250, 204, 21, 0.4);
+      white-space: nowrap;
+    }
+
+    #skills .skill-group-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    /* Projects */
+    .project-card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      padding: 1.4rem 1.3rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.8);
+    }
+
+    .project-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .project-tags span {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 0.15rem 0.6rem;
+      margin-right: 0.25rem;
+      margin-top: 0.25rem;
+      display: inline-block;
+    }
+
+    /* Experience – updated style */
+    .experience-item {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      padding: 1.4rem 1.3rem;
+      height: 100%;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.8);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .experience-item:hover {
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+    }
+
+    .experience-role {
+      font-weight: 600;
+      font-size: 1.05rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .experience-company {
+      font-size: 0.92rem;
+      color: var(--accent);
+    }
+
+    .experience-meta {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .experience-item ul {
+      padding-left: 1.1rem;
+      margin-bottom: 0;
+    }
+
+    .experience-item li {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+      line-height: 1.6;
+    }
+
+    /* Contact */
+    #contact .card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    #contact a {
+      color: var(--accent);
+      word-break: break-all;
+    }
+
+    #contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 20px 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      background: #020617;
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--accent);
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 767px) {
+      .hero-text {
+        max-width: 100%;
+      }
+      .hero-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
+  <!-- tsparticles background -->
+  <div id="tsparticles"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#home">PRATHIK REDDY</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="home">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-md-7">
+          <div class="hero-subtitle">Full Stack Developer · Backend Engineer</div>
+          <h1 class="hero-name">Hi, I'm Prathik Reddy Thogaru.</h1>
+          <div class="hero-title">
+            Software Engineer
+          </div>
+          <p class="hero-text">
+            I recently completed my MS in Computer Science at Cleveland State
+            University and have hands-on experience as a Software Engineer at
+            Cognizant and as a Full Stack Developer at Community Dreams Foundation.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary-custom">
+              View My Work
+            </a>
+            <a
+              href="https://github.com/prathikreddy1"
+              target="_blank"
+              class="btn btn-outline-custom"
+            >
+              GitHub Profile
+            </a>
+            <span class="pill">
+              <span class="pill-dot"></span>
+              Open to full-time roles
+            </span>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="card border-0 shadow-sm" style="background: rgba(15,23,42,0.95); border-radius: 18px;">
+            <div class="card-body p-4">
+              <p class="mb-1 text-uppercase" style="letter-spacing: 0.18em; font-size: 0.75rem; color: #9ca3af;">
+                Snapshot
+              </p>
+              <h5 class="mb-2" style="font-weight: 600;">What I Focus On</h5>
+              <ul class="mb-0" style="padding-left: 1.1rem; font-size: 0.9rem; color: #9ca3af;">
+                <li>Designing RESTful APIs with Java &amp; Spring Boot</li>
+                <li>Building responsive front-ends with HTML, CSS &amp; JS</li>
+                <li>Working with SQL / NoSQL databases and query optimization</li>
+                <li>Deploying and experimenting with cloud platforms (AWS)</li>
+              </ul>
             </div>
+          </div>
         </div>
-    </nav>
+      </div>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <h1>Welcome to My Portfolio</h1>
-        <p>I am Prathik Reddy Thogaru</p>
-        <div class="typewriter">
-        <p>  Software Developer</p>
-        </div>
-    </section>
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">About</div>
+      <h2 class="section-heading">Who I Am</h2>
 
-    <!-- About Section -->
-    <section id="about" class="section bg-dark">
-        <div class="container">
-            <h2 class="text-center text-warning mb-4">About Me</h2>
-            <p class="text-center">
-                A passionate and driven Master’s student in Computer Science at Cleveland State University, bringing a combination of strong academic knowledge and hands-on experience in building efficient and scalable applications.
-
-Earned a Bachelor’s degree in Computer Science from Jawaharlal Nehru Technological University (July 2018 - July 2022), developing a solid foundation in computer science principles and programming.
-
-Enthusiastic about solving challenging problems and creating impactful solutions in the tech industry. Let’s connect and innovate together!
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <div class="card border-0 p-4 p-md-5">
+            <p>
+              I am a results-driven Full Stack Developer with a strong foundation
+              in computer science and practical experience in building enterprise
+              and nonprofit web applications. I completed my
+              <strong>MS in Computer Science</strong> at
+              <strong>Cleveland State University</strong> and hold a
+              <strong>Bachelor’s degree in Computer Science</strong>.
             </p>
+            <p>
+              Professionally, I’ve worked on Java- and Spring Boot–based backend
+              services, optimized SQL queries, and contributed to responsive
+              front-end interfaces. I enjoy collaborating in agile teams, turning
+              requirements into well-structured features, and continuously
+              improving my craft through learning and experimentation.
+            </p>
+            <p class="mb-0">
+              I am currently seeking <strong>full-time roles</strong> in
+              <strong>Full Stack Development</strong> or
+              <strong>Backend Engineering</strong>, where I can contribute to
+              production systems and grow alongside experienced engineers.
+            </p>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Projects Section -->
-    
-                <div class="col-md-6 col-lg-4">
-                    <div class="card bg-light text-dark h-100">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Applications of the Machine Learning in the field of Medical Care</h5>
-                            <p class="card-text">Developed Machine Learning models for enhanced disease diagnosis, personalized treatments, and clinical decision-support systems using Python, TensorFlow, and Scikit-learn.</p>
-                            <a href="https://github.com/prathikreddy1/Application-of-the-Machine-Learning-in-the-field-of-Medical-Care" target="_blank" class="btn btn-primary btn-sm">GitHub Repo</a>
-                        </div>
-                    </div>
-                </div>
+  <!-- Resume Section -->
+  <section id="resume">
+    <div class="container">
+      <div class="section-title">Resume</div>
+      <h2 class="section-heading">My Resume</h2>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="card border-0 p-4 p-md-5 text-center">
+            <p style="color: #9ca3af; font-size: 0.95rem;">
+              You can view or download my latest resume directly here.
+            </p>
+            <div class="mb-3">
+              <a href="prathik_resume%20(1).pdf" target="_blank" class="btn btn-primary-custom">
+                Open Resume (PDF)
+              </a>
             </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="experience-section">
-        <div class="container">
-            <h1>Professional Experience</h1>
-            <!-- Experience 1 -->
-            <div class="experience-card">
-                <h3>Teaching Assistant</h3>
-                <p><strong>Institution:</strong> Cleveland State University</p>
-                <p><strong>Duration:</strong> August 2024 - Present</p>
-                <p>
-                    I assisted the professor with various academic responsibilities, including delivering lectures, grading assignments, and tutoring students. I led review sessions to help students prepare for exams, addressing any questions they had and providing clarification on complex topics. Additionally, I supported students with their coursework and class assignments, offering guidance and ensuring they had a solid understanding of the material.
-                </p>
+            <p class="mb-3" style="color: #9ca3af; font-size: 0.85rem;">
+              If the preview does not load on mobile, use the button above to open it in a new tab.
+            </p>
+            <div class="d-none d-md-block">
+              <iframe
+                src="prathik_resume%20(1).pdf"
+                title="Prathik Reddy Thogaru Resume"
+                class="resume-frame"
+              ></iframe>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            <!-- Experience 2 -->
-            <div class="experience-card">
-                <h3>Software Engineer </h3>
-                <p><strong>Company:</strong> Cognizant</p>
-                <p><strong>Duration:</strong> February 2022 - July 2023</p>
-                <p>
-                   I have developed scalable enterprise applications using Java, Spring Boot, and the Spring Framework, implementing a microservices architecture to enhance modularity and fault isolation. My experience includes building and optimizing RESTful APIs, which facilitated seamless service communication and reduced SQL query latency by 30% through effective query refactoring. I have successfully deployed and managed distributed systems on AWS, utilizing services such as EC2, S3, and Lambda, which improved scalability and performance by 20% while enhancing fault tolerance. Working in an agile environment, I actively contributed to sprint planning, daily stand-ups, and sprint retrospectives. Additionally, I developed responsive, high-performance web applications using HTML, CSS, and JavaScript, focusing on modern, cross-browser design principles to enhance user experience and interface. My back-end development skills are supported by my proficiency in Spring Boot and object-oriented programming (OOP), which have enabled efficient data management and API development. I have also optimized complex SQL queries using PL/SQL, significantly improving database performance and data integrity. Overall, my exposure to Agile development practices has further enriched my collaborative skills, as I participated in daily stand-ups and sprint reviews to ensure project alignment and success.
-                </p>
+  <!-- Skills with Visualization -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-title">Skills</div>
+      <h2 class="section-heading">Tech Stack</h2>
+
+      <div class="row g-4 align-items-stretch">
+        <!-- Text / badge skills -->
+        <div class="col-md-6">
+          <div class="mb-4">
+            <div class="skill-group-title">Languages</div>
+            <div>
+              <span class="skill-badge">Java</span>
+              <span class="skill-badge">Python</span>
+              <span class="skill-badge">JavaScript</span>
+              <span class="skill-badge">SQL</span>
+              <span class="skill-badge">C / C++</span>
             </div>
+          </div>
 
-            
+          <div class="mb-4">
+            <div class="skill-group-title">Backend &amp; Databases</div>
+            <div>
+              <span class="skill-badge">Spring Boot</span>
+              <span class="skill-badge">Microservices</span>
+              <span class="skill-badge">RESTful APIs</span>
+              <span class="skill-badge">MySQL / PostgreSQL</span>
+              <span class="skill-badge">MongoDB</span>
+              <span class="skill-badge">PL/SQL</span>
+              <span class="skill-badge">Node.js</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="skill-group-title">Frontend &amp; Other Tools</div>
+            <div>
+              <span class="skill-badge">HTML5</span>
+              <span class="skill-badge">CSS3</span>
+              <span class="skill-badge">Bootstrap</span>
+              <span class="skill-badge">React</span>
+              <span class="skill-badge">Git &amp; GitHub</span>
+              <span class="skill-badge">AWS (EC2, S3, Lambda)</span>
+              <span class="skill-badge">Agile / Scrum</span>
+              <span class="skill-badge">Linux</span>
+            </div>
+          </div>
         </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section bg-dark">
-        <div class="container">
-            <h2 class="text-center text-warning mb-4">Contact Me</h2>
-            <p class="text-center">Email: <a href="mailto:prathikreddyt@gmail.com" class="text-warning">prathikreddyt@gmail.com</a></p>
-            <p class="text-center">LinkedIn: <a href="https://www.linkedin.com/in/prathik-reddy-thogaru-42a4681b2/" target="_blank" class="text-warning">linkedin.com/in/PrathikReddyThogaru</a></p>
+        <!-- Skills radar chart -->
+        <div class="col-md-6">
+          <div class="card border-0 p-4" style="background: rgba(15,23,42,0.95); border-radius: 16px; border: 1px solid var(--border-subtle); height: 100%;">
+            <h5 class="mb-3" style="font-weight: 600;">Skills Overview</h5>
+            <p style="color: #9ca3af; font-size: 0.9rem;">
+              A relative view of where I currently spend most of my time and strength across the stack.
+            </p>
+            <div style="height: 320px;">
+              <canvas id="skillsChart"></canvas>
+            </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Prathik Reddy Thogaru. All Rights Reserved.</p>
-            <p><a href="#home">Back to Top</a></p>
+  <!-- Projects -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title">Projects</div>
+      <h2 class="section-heading">Selected Work</h2>
+
+      <div class="row g-4">
+        <!-- Project 1 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="project-card">
+            <div>
+              <h3 class="project-title">Portfolio Website</h3>
+              <p class="project-desc">
+                A responsive personal portfolio built with HTML, CSS, JavaScript,
+                and Bootstrap to showcase my projects, experience, and technical
+                skills. Designed with a clean layout to be recruiter-friendly.
+              </p>
+              <div class="project-tags">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Bootstrap</span>
+              </div>
+            </div>
+            <div class="mt-3">
+              <a
+                href="https://github.com/prathikreddy1/portfolio"
+                target="_blank"
+                class="btn btn-outline-custom btn-sm"
+              >
+                View on GitHub
+              </a>
+            </div>
+          </div>
         </div>
-    </footer>
 
-    <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Project 2 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="project-card">
+            <div>
+              <h3 class="project-title">ML in Medical Care</h3>
+              <p class="project-desc">
+                Built machine learning models to support disease diagnosis and
+                personalized treatment suggestions. Implemented pipelines using
+                Python, TensorFlow, and scikit-learn with data preprocessing,
+                model training, and evaluation.
+              </p>
+              <div class="project-tags">
+                <span>Python</span>
+                <span>TensorFlow</span>
+                <span>scikit-learn</span>
+                <span>Pandas</span>
+              </div>
+            </div>
+            <div class="mt-3">
+              <a
+                href="https://github.com/prathikreddy1/Application-of-the-Machine-Learning-in-the-field-of-Medical-Care"
+                target="_blank"
+                class="btn btn-outline-custom btn-sm"
+              >
+                View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="col-md-6 col-lg-4">
+          <div class="project-card">
+            <div>
+              <h3 class="project-title">DEX Trade Data Analysis</h3>
+              <p class="project-desc">
+                Collected WETH/USDT trade data from decentralized exchanges using
+                Python, compared prices with Binance, and automated analysis and
+                visualization using Matplotlib to identify price differences and
+                trends.
+              </p>
+              <div class="project-tags">
+                <span>Python</span>
+                <span>Web3 / APIs</span>
+                <span>Matplotlib</span>
+                <span>Data Analysis</span>
+              </div>
+            </div>
+            <div class="mt-3">
+              <a
+                href="https://github.com/prathikreddy1/Decentralized-Exchange-Trade-Data-Collection-Analysis"
+                target="_blank"
+                class="btn btn-outline-custom btn-sm"
+              >
+                View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-title">Experience</div>
+      <h2 class="section-heading">Professional Background</h2>
+
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="experience-item">
+            <div class="experience-role">Full Stack Developer</div>
+            <div class="experience-company">Community Dreams Foundation – Remote</div>
+            <div class="experience-meta">Sept 2025 – Present</div>
+            <ul>
+              <p>As a Web Developer, I specialize in developing and maintaining high-performance web applications using modern frameworks and technologies. I design user interfaces that are optimized for speed, scalability, and seamless user experience. By collaborating closely with cross-functional teams, I help define, design, and ship new features that align with both user needs and business goals. I’m committed to writing clean, maintainable code and actively participate in code reviews to ensure high standards. Additionally, I troubleshoot and debug applications to improve performance, while staying up-to-date with emerging technologies to continuously enhance the projects I work on.</p>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="experience-item">
+            <div class="experience-role">Software Engineer</div>
+            <div class="experience-company">Cognizant</div>
+            <div class="experience-meta">Feb 2022 – Jul 2023 · Hyderabad, India</div>
+            <ul>
+              <p>I have developed scalable enterprise applications using Java, Spring Boot, and the Spring Framework, implementing a microservices architecture to enhance modularity and fault isolation. My experience includes building and optimizing RESTful APIs, which facilitated seamless service communication and reduced SQL query latency by 30% through effective query refactoring. I have successfully deployed and managed distributed systems on AWS, utilizing services such as EC2, S3, and Lambda, which improved scalability and performance by 20% while enhancing fault tolerance. Working in an agile environment, I actively contributed to sprint planning, daily stand-ups, and sprint retrospectives. Additionally, I developed responsive, high-performance web applications using HTML, CSS, and JavaScript, focusing on modern, cross-browser design principles to enhance user experience and interface. My back-end development skills are supported by my proficiency in Spring Boot and object-oriented programming (OOP), which have enabled efficient data management and API development. I have also optimized complex SQL queries using PL/SQL, significantly improving database performance and data integrity. Overall, my exposure to Agile development practices has further enriched my collaborative skills, as I participated in daily stand-ups and sprint reviews to ensure project alignment and success.</p>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="experience-item">
+            <div class="experience-role">Teaching Assistant</div>
+            <div class="experience-company">Cleveland State University</div>
+            <div class="experience-meta">Aug 2024 – May 2025 · Cleveland, Ohio</div>
+            <ul>
+              <p>I assisted the professor with various academic responsibilities, including delivering lectures, grading assignments, and tutoring students. I led review sessions to help students prepare for exams, addressing any questions they had and providing clarification on complex topics. Additionally, I supported students with their coursework and class assignments, offering guidance and ensuring they had a solid understanding of the material</p>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">Contact</div>
+      <h2 class="section-heading">Let’s Connect</h2>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-7">
+          <div class="card border-0 p-4 p-md-5 text-center">
+            <p class="mb-3" style="color: #9ca3af; font-size: 0.95rem;">
+              I’m actively looking for full-time opportunities in
+              <strong>Full Stack</strong> and <strong>Backend</strong> roles.
+              Feel free to reach out if you’d like to discuss a role,
+              collaboration, or project.
+            </p>
+
+            <p class="mb-2">
+              <strong>Email:</strong>
+              <br />
+              <a href="mailto:prathikreddyt@gmail.com">prathikreddyt@gmail.com</a>
+            </p>
+
+            <p class="mb-2">
+              <strong>LinkedIn:</strong>
+              <br />
+              <a
+                href="https://www.linkedin.com/in/prathik-reddy-thogaru-42a4681b2/"
+                target="_blank"
+              >
+                linkedin.com/in/prathik-reddy-thogaru-42a4681b2
+              </a>
+            </p>
+
+            <p class="mb-0">
+              <strong>GitHub:</strong>
+              <br />
+              <a
+                href="https://github.com/prathikreddy1"
+                target="_blank"
+              >
+                github.com/prathikreddy1
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Prathik Reddy Thogaru. All rights reserved.</p>
+      <p>
+        <a href="#home">Back to top</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Skills Chart Script -->
+  <script>
+    const skillsCtx = document.getElementById("skillsChart").getContext("2d");
+
+    new Chart(skillsCtx, {
+      type: "radar",
+      data: {
+        labels: [
+          "Backend (Java / Spring)",
+          "Frontend (HTML / CSS / JS)",
+          "Databases & SQL",
+          "Cloud (AWS)",
+          "APIs & Integration",
+          "Collaboration / Agile"
+        ],
+        datasets: [
+          {
+            label: "Proficiency (relative)",
+            data: [9, 7, 8, 6, 8, 7], // adjust 0–10 as you like
+            borderWidth: 2,
+            pointRadius: 3,
+            fill: true
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          r: {
+            beginAtZero: true,
+            suggestedMax: 10,
+            angleLines: {
+              color: "rgba(148, 163, 184, 0.3)"
+            },
+            grid: {
+              color: "rgba(148, 163, 184, 0.3)"
+            },
+            pointLabels: {
+              color: "#e5e7eb",
+              font: { size: 11 }
+            },
+            ticks: {
+              display: false
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                return context.formattedValue + " / 10";
+              }
+            }
+          }
+        }
+      }
+    });
+  </script>
+
+  <!-- tsparticles init -->
+  <script>
+    tsParticles.load("tsparticles", {
+      background: {
+        color: { value: "#000000" }
+      },
+      fpsLimit: 60,
+      interactivity: {
+        events: {
+          onHover: { enable: true, mode: "grab" },
+          resize: true
+        },
+        modes: {
+          grab: {
+            distance: 180,
+            links: { opacity: 0.4 }
+          }
+        }
+      },
+      particles: {
+        number: { value: 80, density: { enable: true, area: 900 } },
+        color: { value: "#ffffff" },
+        links: {
+          enable: true,
+          distance: 150,
+          color: "#ffffff",
+          opacity: 0.25,
+          width: 0.7
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          outModes: { default: "bounce" }
+        },
+        opacity: { value: 0.35 },
+        shape: { type: "circle" },
+        size: { value: { min: 1, max: 3 } }
+      },
+      detectRetina: true
+    });
+  </script>
 </body>
 </html>
